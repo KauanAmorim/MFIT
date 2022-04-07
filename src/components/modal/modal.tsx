@@ -29,7 +29,7 @@ const style = {
 };
 
 const api = axios.create({ 
-  baseURL: 'https://mais-fit-project-v2.herokuapp.com/',
+  baseURL: 'https://mais-fit.herokuapp.com/',
 })
 
 const getFlavors = async () => {
@@ -80,7 +80,6 @@ export default function FlavorsModal() {
                   <CloseIcon />
                 </Button>
               </Box>
-
 
               <Box className='flavorsPanel' >
                   { flavors.map((flavor: IFlavor) => (
