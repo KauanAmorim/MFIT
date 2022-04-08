@@ -9,7 +9,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Gender from './gender';
-import CPF  from './cpf';
+import CPF, { isValidCPF }  from './cpf';
 import CEP from './cep';
 import axios from 'axios';
 
@@ -40,6 +40,10 @@ export default function SignUp() {
       nascimento: data.get("birthdate"),
       celular: data.get("phone"),
       senha: data.get("password")
+    }
+   
+    if(!isValidCPF(String(formData.cpf))){
+      return false
     }
 
     api.post('/clientes', formData).then(({data}) => {

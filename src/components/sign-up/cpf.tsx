@@ -2,7 +2,7 @@ import { TextField } from "@mui/material";
 import React from "react";
 import './cpf.css'
 
-function isValidCPF(cpf: string) {
+export function isValidCPF(cpf: string) {
     if (typeof cpf !== "string") return false
     cpf = cpf.replace(/[\s.-]*/igm, '')
     if (
@@ -34,7 +34,9 @@ function isValidCPF(cpf: string) {
     resto = (soma * 10) % 11
     if ((resto == 10) || (resto == 11))  resto = 0
     if (resto != parseInt(cpf.substring(10, 11) ) ) return false
+    
     return true
+    
 }
 
 export default function CPF() {
