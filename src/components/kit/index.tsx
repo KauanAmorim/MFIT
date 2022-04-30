@@ -1,8 +1,6 @@
 import { Box } from "@mui/material";
-import FlavorsModal from "../modal";
+import FlavorsModal from "./flavorsModal";
 import './kit.css'
-
-
 
 export default function Kit() {
   return (

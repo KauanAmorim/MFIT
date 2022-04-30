@@ -1,8 +1,0 @@
-.flavorsPanel {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    overflow-y: scroll;
-    height: 650px;
-    padding: 50px;
-}

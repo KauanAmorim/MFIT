@@ -3,7 +3,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { FormControl, InputLabel } from '@mui/material';
 
-export default function Gender() {
+export function SignUpGender() {
   const [gender, setGender] = React.useState('');
 
   const handleChange = (event: SelectChangeEvent) => {

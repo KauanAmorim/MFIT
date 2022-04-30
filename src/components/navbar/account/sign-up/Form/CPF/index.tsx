@@ -1,6 +1,6 @@
 import { TextField } from "@mui/material";
 import React from "react";
-import './cpf.css'
+import './index.css'
 
 function isValidCPF(cpf: string) {
     if (typeof cpf !== "string") return false
@@ -37,7 +37,7 @@ function isValidCPF(cpf: string) {
     return true
 }
 
-export default function CPF() {
+export function SignUpCPF() {
     const [text, setText] = React.useState("");
     const [errorMessage, setErrorMessage] = React.useState("");
   

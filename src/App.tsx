@@ -1,14 +1,14 @@
 import { Container, CssBaseline } from "@mui/material"
 import React from "react"
-import Kit from "./components/kit/kit"
-import Navbar from "./components/navbar/navbar"
+import Kit from "./components/kit"
+import { Navbar } from "./components/navbar"
 
 function App() {
   return (
     <React.Fragment>
       <CssBaseline />
+      <Navbar />
       <Container maxWidth="xl">
-        <Navbar />
         <Kit />
       </Container>
     </React.Fragment>
