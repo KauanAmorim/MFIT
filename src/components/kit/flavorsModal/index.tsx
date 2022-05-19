@@ -31,7 +31,7 @@ export default function FlavorsModal() {
         api.get('/lista').then(({data}) => {
             setFlavors(data)
         })
-    })
+    }, []) // passando um array para que o efeito só seja executado inicialmente, evitando loop de requisições.
 
     return (
         <div>

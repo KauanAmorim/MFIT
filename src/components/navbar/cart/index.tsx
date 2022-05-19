@@ -29,7 +29,7 @@ export function CartButton() {
         api.get('/formapagamento').then(({data}) => {
             setPayments(data)
         })
-    })
+    }, [])// passando um array para que o efeito só seja executado inicialmente, evitando loop de requisições.
 
     const [openCartModal, setOpenCartModal] = React.useState(false);
     const handleOpen = () => setOpenCartModal(true);
