@@ -1,10 +1,14 @@
 .flavorCard {
     width: 350px;
-    margin: 20px;
+    
     box-sizing: border-box;
 }
 
 .flavorName {
     margin: 10px;
     padding: 10px;
+}
+
+.flavor {
+    margin: 20px;
 }

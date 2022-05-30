@@ -16,16 +16,43 @@ import { IFlavor } from './index.types';
 import axios from 'axios';
 
 const api = axios.create({ 
-  baseURL: 'https://mais-fit-project-v2.herokuapp.com/',
+    baseURL: 'https://mais-fit-project-v2.herokuapp.com/',
 })
 
 export default function FlavorsModal() {
+
+    const currentKitAlreadyExist = localStorage.getItem("currentKit")
+    if (!currentKitAlreadyExist) {
+        localStorage.setItem("currentKit", JSON.stringify({
+            limit: 10,
+            count: 0,
+            flavors: []
+        }))
+    }
+
+    const kitsAlreadyExist = localStorage.getItem("kits")
+    if(!kitsAlreadyExist){
+        localStorage.setItem("kits", JSON.stringify({
+            "kits": []
+        }))
+    }
+
+    // const [session, setSession] = React.useState()
+    // const [generalCounter, setGeneralCounter] = React.useState<number>(0)
 
     // Flavors Modal State
     const [flavors, setFlavors] = React.useState<IFlavor[]>([])
     const [openFlavorsModal, setOpenFlavorsModal] = React.useState(false);
     const handleOpen = () => setOpenFlavorsModal(true);
     const handleClose = () => setOpenFlavorsModal(false);
+
+    // Rever esse negócio
+    const [limit, setLimit] = React.useState<number>(0)
+    const [currentKit, setCurrentKit] = React.useState<string>()
+    const OpenModalAndSetlimit10 = () => { setLimit(10), setCurrentKit('kit10'), handleOpen() }
+    const OpenModalAndSetlimit15 = () => { setLimit(15), setCurrentKit('kit15'), handleOpen() }
+    const OpenModalAndSetlimit20 = () => { setLimit(20), setCurrentKit('kit20'), handleOpen() }
+    const OpenModalAndSetlimit30 = () => { setLimit(30), setCurrentKit('kit30'), handleOpen() }
 
     React.useEffect(() => {
         api.get('/lista').then(({data}) => {
@@ -36,10 +63,10 @@ export default function FlavorsModal() {
     return (
         <div>
             <Box className="BoxKits">
-                <div onClick={handleOpen} className="Kit"><MediaCard imagePath={kit10}/></div>
-                <div onClick={handleOpen} className="Kit"><MediaCard imagePath={kit15}/></div>
-                <div onClick={handleOpen} className="Kit"><MediaCard imagePath={kit20}/></div>
-                <div onClick={handleOpen} className="Kit"><MediaCard imagePath={kit30}/></div>
+                <div onClick={OpenModalAndSetlimit10} className="Kit"><MediaCard imagePath={kit10}/></div>
+                <div onClick={OpenModalAndSetlimit15} className="Kit"><MediaCard imagePath={kit15}/></div>
+                <div onClick={OpenModalAndSetlimit20} className="Kit"><MediaCard imagePath={kit20}/></div>
+                <div onClick={OpenModalAndSetlimit30} className="Kit"><MediaCard imagePath={kit30}/></div>
             </Box>
 
             <Modal
@@ -62,9 +89,17 @@ export default function FlavorsModal() {
 
                     <Box sx={flavorsPanel}>
                         { flavors.map((flavor: IFlavor) => (
-                            <MediaCardFlavor key={flavor.id} imagePath={flavor.link} nameFlavor={flavor.nome} />
+                            <MediaCardFlavor 
+                                key={flavor.id} 
+                                imagePath={flavor.link} 
+                                nameFlavor={flavor.nome}
+                                limit={limit}
+                                currentKit={currentKit}
+                                flavor={flavor} 
+                            />
                         ))}
                     </Box>
+
                     <Box sx={{ display: 'flex', flexDirection: 'row-reverse'}}>
                         <Button sx={{ padding: '10px 30px'}}>Salvar</Button>
                     </Box>
